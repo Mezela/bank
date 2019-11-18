@@ -15,9 +15,14 @@ describe BankAccount do
       expect(subject.balance).to eq 1000
     end
 
-    it 'records the day of the transaction' do
+    it 'records the type of transaction as debit' do
       subject.deposit(1000)
-      expect(subject.transactions).to eq [{ type: 'debit', amount: 1000, date: DateTime.now.strftime("%d/%m/%Y") }]
+      expect(subject.transactions.first[:type]).to eq 'debit'
+    end
+
+    it 'records the date of transaction' do
+      subject.deposit(1000)
+      expect(subject.transactions.first[:date]).to eq DateTime.now.strftime("%d/%m/%Y")
     end
   end
 
