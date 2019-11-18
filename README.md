@@ -3,23 +3,33 @@
 This program interacts with the command line, taking an input of a deposit or withdrawal and returning the account statement. 
 The account statement consists of the date, amount and balance.
 
+### Approach
+Build two classes: one to print the bank statement for any account and another class to record the transactions made in an account. This approach was used to stick to the single responsibility principle. 
+
+The hard dependencies between the classes was removed using dependency injection.
+
+### Screenshot of running app
+
+
 ## Install
 First, clone this repository. Then move into the folder:
+```
 $ cd path/to/bank/repo
 $ bundle install
+```
 
 Ensure Ruby is installed (using either RVM or RubyInstaller).
 
 ## Run the app
-
+```
 $ irb
 $ require './lib/bank_statement.rb'
-
+```
 ## Run the tests
-
+```
 $ cd path/to/bank/repo
 $ rspec
-
+```
 ## Requirements
 - You should be able to interact with your code via a REPL like IRB or the JavaScript console. (You don't need to implement a command line interface that takes input from STDIN.)
 - Deposits, withdrawal
@@ -63,7 +73,7 @@ I would like to be able to see my latest bank statement including date, type and
 ### Edge cases
 ```
 As a user
-SO that I don't spend more than I have
+So that I don't spend more than I have
 I would like to receive a message when I have insufficient balance
 ```
 i.e.
@@ -83,3 +93,4 @@ date || credit || debit || balance
 - Rspec
 - Simplecov
 - Rubocop
+
