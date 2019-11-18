@@ -13,7 +13,8 @@ Ensure IRB is installed [add to this]
 ## Run the app
 
 $ irb
-$ require './bank.rb'
+$ require './bank_account.rb'
+$ require './bank_statement.rb'
 
 
 ## Run the tests
@@ -43,11 +44,15 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
 
-
-
-## Acceptance criteria
-
-
-
 ### Edge cases
+User Story 2:
+```
+Given a client makes a deposit of 1000
+And tries to make a withdrawal of 1001
+She will receive an error message 
+And when she prints her bank statement
+Then she would see
 
+date || credit || debit || balance
+10/01/2012 || 1000.00 || || 1000.00
+```
