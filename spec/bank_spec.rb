@@ -9,9 +9,17 @@ describe BankAccount do
   end
 
   describe '#deposit' do
-    it 'adds a deposit to the current balance' do
+    it 'increases current balance' do
       subject.deposit(1000)
       expect(subject.balance).to eq 1000
+    end
+  end
+
+  describe '#withdraw' do
+    it 'reduces current balance' do
+      subject.deposit(1000)
+      subject.withdraw(500)
+      expect(subject.balance).to eq 500
     end
   end
 

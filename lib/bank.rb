@@ -10,4 +10,8 @@ class BankAccount
     @balance += money
   end
 
+  def withdraw(money)
+    @balance -=money
+  end
+
 end
