@@ -11,13 +11,13 @@ class BankAccount
   
   def deposit(money)
     @balance += money
-    @transaction = { type: 'debit', amount: money, date: DateTime.now.strftime("%d/%m/%Y") }
+    @transaction = { type: 'debit', amount: money, date: DateTime.now.strftime("%d/%m/%Y"), balance: @balance }
     @transactions << @transaction
   end
 
   def withdraw(money)
     @balance -=money
-    @transaction = { type: 'credit', amount: money, date: DateTime.now.strftime("%d/%m/%Y") }
+    @transaction = { type: 'credit', amount: money, date: DateTime.now.strftime("%d/%m/%Y"), balance: @balance }
     @transactions << @transaction
   end
 
