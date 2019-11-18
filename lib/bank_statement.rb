@@ -1,3 +1,4 @@
+
 require_relative 'bank_account'
 
 class BankStatement
@@ -5,12 +6,12 @@ class BankStatement
 
   def initialize(account = BankAccount.new)
     @account = account
-    @statement = ""
+    @statement = ''
   end
 
   def print_statement
     statement_header
-    if !@account.transactions.empty? 
+    unless @account.transactions.empty?
       @account.transactions.reverse.each do |transaction|
         list_each_transaction(transaction)
       end
@@ -23,15 +24,14 @@ class BankStatement
   attr_accessor :statement
 
   def statement_header
-    statement << "date || credit || debit || balance"
+    statement << 'date || credit || debit || balance'
   end
 
   def list_each_transaction(transaction)
-    if transaction[:type] == "credit"
-      statement << "\n" + transaction[:date] + " || " + transaction[:amount] + " || || " + transaction[:balance]
+    if transaction[:type] == 'credit'
+      statement << '\n' + transaction[:date] + ' || ' + transaction[:amount] + ' || || ' + transaction[:balance]
     else
-      statement << "\n" + transaction[:date] + " || || " + transaction[:amount] + " || " + transaction[:balance]
+      statement << '\n' + transaction[:date] + ' || || ' + transaction[:amount] + ' || ' + transaction[:balance]
     end
   end
-
 end
