@@ -1,4 +1,4 @@
-require 'bank'
+require 'bank_account'
 require 'date'
 
 describe BankAccount do
