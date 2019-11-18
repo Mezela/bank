@@ -35,6 +35,11 @@ describe BankAccount do
 
   context 'withdrawing money from account' do
     describe '#withdraw' do
+
+      it 'records the current balance after transaction' do
+        expect(subject.withdraw(500)).to eq "Insufficient balance"
+      end
+
       it 'reduces current balance' do
         subject.deposit(1000)
         subject.withdraw(500)
@@ -42,19 +47,17 @@ describe BankAccount do
       end
 
       it 'records the type of transaction as credit' do
+        subject.deposit(1000)
         subject.withdraw(500)
-        expect(subject.transactions.first[:type]).to eq 'debit'
+        expect(subject.transactions.last[:type]).to eq 'debit'
       end
 
       it 'records the date of transaction' do
+        subject.deposit(1000)
         subject.withdraw(500)
-        expect(subject.transactions.first[:date]).to eq DateTime.now.strftime("%d/%m/%Y")
+        expect(subject.transactions.last[:date]).to eq DateTime.now.strftime("%d/%m/%Y")
       end
 
-      it 'records the current balance after transaction' do
-        subject.withdraw(500)
-        expect(subject.transactions.first[:balance]).to eq "-500.00"
-      end
   end
 
   end

@@ -16,6 +16,7 @@ class BankAccount
   end
 
   def withdraw(money)
+    return "Insufficient balance" if insufficient_balance?(money)
     @balance -= money
     record_transaction(@balance, money, 'debit')
   end
@@ -25,6 +26,10 @@ class BankAccount
     balance_string = ("%.2f" % balance).to_s
     @transaction = { type: type , amount: money_string, date: DateTime.now.strftime("%d/%m/%Y"), balance: balance_string }
     @transactions << @transaction
+  end
+
+  def insufficient_balance?(request)
+    return true if @balance - request < 0
   end
 
 end
