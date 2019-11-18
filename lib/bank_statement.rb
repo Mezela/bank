@@ -11,7 +11,7 @@ class BankStatement
     statement = ""
     statement << "date || credit || debit || balance"
     if !@account.transactions.empty? 
-      @account.transactions.each do |transaction|
+      @account.transactions.reverse.each do |transaction|
         if transaction[:type] == "credit"
           statement << "\n" + transaction[:date] + " || " + transaction[:amount] + " || || " + transaction[:balance]
         else
@@ -19,7 +19,6 @@ class BankStatement
         end
       end
     end
-    p statement
     return statement
   end
 
