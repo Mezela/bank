@@ -6,5 +6,8 @@ class BankAccount
     @balance = INITIAL_BALANCE
   end
   
+  def deposit(money)
+    @balance += money
+  end
 
 end
