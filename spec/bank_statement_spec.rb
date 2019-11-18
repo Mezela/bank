@@ -39,6 +39,16 @@ describe BankStatement do
       # expect(statement.print_statement).to eq("date || credit || debit || balance\n" + DateTime.now.strftime("%d/%m/%Y") +" || 500.00 || 1000.00")
     end
 
+    it "returns the statement for one deposit of 1000 and attempted withdrawal of 1001" do
+      account2 = BankAccount.new
+      account2.deposit(1000)
+      account2.withdraw(1001)
+      statement2 = BankStatement.new(account2)
+      expect(statement2.print_statement).to eq("date || credit || debit || balance\n" + DateTime.now.strftime("%d/%m/%Y") +" || 1000.00 || || 1000.00")
+      # bank_account.deposit(1000)
+      # expect(statement.print_statement).to eq("date || credit || debit || balance\n" + DateTime.now.strftime("%d/%m/%Y") +" || 500.00 || 1000.00")
+    end
+
   end
 
 end

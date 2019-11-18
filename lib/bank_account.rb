@@ -1,5 +1,4 @@
 require 'date'
-require 'bigdecimal'
 
 class BankAccount
   attr_reader :balance, :transactions
