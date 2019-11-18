@@ -37,7 +37,7 @@ describe BankAccount do
     describe '#withdraw' do
 
       it 'records the current balance after transaction' do
-        expect(subject.withdraw(500)).to eq "Insufficient balance"
+        expect(subject.withdraw(500)).to include "Insufficient balance"
       end
 
       it 'reduces current balance' do

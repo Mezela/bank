@@ -5,21 +5,33 @@ class BankStatement
 
   def initialize(account = BankAccount.new)
     @account = account
+    @statement = ""
   end
 
   def print_statement
-    statement = ""
-    statement << "date || credit || debit || balance"
+    statement_header
     if !@account.transactions.empty? 
       @account.transactions.reverse.each do |transaction|
-        if transaction[:type] == "credit"
-          statement << "\n" + transaction[:date] + " || " + transaction[:amount] + " || || " + transaction[:balance]
-        else
-          statement << "\n" + transaction[:date] + " || || " + transaction[:amount] + " || " + transaction[:balance]
-        end
+        list_each_transaction(transaction)
       end
     end
     return statement
+  end
+
+  private
+
+  attr_accessor :statement
+
+  def statement_header
+    statement << "date || credit || debit || balance"
+  end
+
+  def list_each_transaction(transaction)
+    if transaction[:type] == "credit"
+      statement << "\n" + transaction[:date] + " || " + transaction[:amount] + " || || " + transaction[:balance]
+    else
+      statement << "\n" + transaction[:date] + " || || " + transaction[:amount] + " || " + transaction[:balance]
+    end
   end
 
 end
