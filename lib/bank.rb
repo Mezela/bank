@@ -17,6 +17,8 @@ class BankAccount
 
   def withdraw(money)
     @balance -=money
+    @transaction = { type: 'credit', amount: money, date: DateTime.now.strftime("%d/%m/%Y") }
+    @transactions << @transaction
   end
 
 end

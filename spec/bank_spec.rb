@@ -32,6 +32,17 @@ describe BankAccount do
       subject.withdraw(500)
       expect(subject.balance).to eq 500
     end
+
+    it 'records the type of transaction as credit' do
+      subject.withdraw(500)
+      expect(subject.transactions.first[:type]).to eq 'credit'
+    end
+
+    it 'records the date of transaction' do
+      subject.withdraw(500)
+      expect(subject.transactions.first[:date]).to eq DateTime.now.strftime("%d/%m/%Y")
+    end
+
   end
 
 end
