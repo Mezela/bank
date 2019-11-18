@@ -7,10 +7,12 @@ describe BankStatement do
 
   describe '#print_statement' do
     before do
-      allow(:bank_account).to receive(:deposit)
+      
     end
 
-    
+    it "returns 'date || credit || debit || balance'" do
+      expect(statement.print_statement).to include("date || credit || debit || balance")
+    end
 
   end
 
