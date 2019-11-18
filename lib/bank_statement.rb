@@ -8,7 +8,19 @@ class BankStatement
   end
 
   def print_statement
-    p "date || credit || debit || balance"
+    statement = ""
+    statement << "date || credit || debit || balance"
+    if !@account.transactions.empty? 
+      @account.transactions.each do |transaction|
+        if transaction[:type] == "credit"
+          statement << "\n" + transaction[:date] + " || " + transaction[:amount] + " || || " + transaction[:balance]
+        else
+          statement << "\n" + transaction[:date] + " || || " + transaction[:amount] + " || " + transaction[:balance]
+        end
+      end
+    end
+    p statement
+    return statement
   end
 
 end
