@@ -9,7 +9,12 @@ Build two classes: one to print the bank statement for any account and another c
 The hard dependencies between the classes was removed using dependency injection.
 
 ### Screenshot of running app
+![Screenshot](https://github.com/Mezela/bank/tree/master/img/bank_app_screenshot.png)
 
+
+### Next steps
+- Add additional class for recording transactions
+- Classes <30 lines ; methods <5 lines
 
 ## Install
 First, clone this repository. Then move into the folder:
