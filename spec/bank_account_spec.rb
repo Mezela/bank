@@ -19,17 +19,17 @@ describe BankAccount do
 
       it 'records the type of transaction as debit' do
         subject.deposit(1000)
-        expect(subject.transactions.first[:type]).to eq 'credit'
+        expect(subject.transactions_log.first.type).to eq 'credit'
       end
 
       it 'records the date of transaction' do
         subject.deposit(1000)
-        expect(subject.transactions.first[:date]).to eq DateTime.now.strftime("%d/%m/%Y")
+        expect(subject.transactions_log.first.date).to eq DateTime.now.strftime("%d/%m/%Y")
       end
 
       it 'records the current balance after transaction' do
         subject.deposit(1000)
-        expect(subject.transactions.first[:balance]).to eq '1000.00'
+        expect(subject.transactions_log.first.balance).to eq '1000.00'
       end
     end
   end
@@ -50,13 +50,13 @@ describe BankAccount do
       it 'records the type of transaction as credit' do
         subject.deposit(1000)
         subject.withdraw(500)
-        expect(subject.transactions.last[:type]).to eq 'debit'
+        expect(subject.transactions_log.last.type).to eq 'debit'
       end
 
       it 'records the date of transaction' do
         subject.deposit(1000)
         subject.withdraw(500)
-        expect(subject.transactions.last[:date]).to eq DateTime.now.strftime('%d/%m/%Y')
+        expect(subject.transactions_log.last.date).to eq DateTime.now.strftime('%d/%m/%Y')
       end
     end
   end

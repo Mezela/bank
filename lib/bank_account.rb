@@ -1,32 +1,27 @@
 # frozen_string_literal: true
 require 'date'
+require_relative 'bank_transaction'
 
 class BankAccount
-  attr_reader :balance, :transactions
+  attr_reader :balance, :transactions_log
   INITIAL_BALANCE = 0.00
 
-  def initialize
+  def initialize(transaction = BankTransaction)
     @balance = INITIAL_BALANCE
-    @transactions = []
+    @transaction = transaction
+    @transactions_log = []
   end
 
-  def deposit(money)
+  def deposit(money, date = nil)
     debit_to_account(money)
-    record_transaction(@balance, money, 'credit')
+    add_transaction_to_log(@transaction.new(type: 'credit' ,amount: money, balance: balance))
   end
 
-  def withdraw(money)
+  def withdraw(money, date = nil)
     return "Insufficient balance. Only #{@balance} left in your account." if insufficient_balance?(money)
 
     credit_to_account(money)
-    record_transaction(@balance, money, 'debit')
-  end
-
-  def record_transaction(balance, money, type)
-    money_string = ('%.2f' % money).to_s
-    balance_string = ('%.2f' % balance).to_s
-    transaction = { type: type, amount: money_string, date: DateTime.now.strftime('%d/%m/%Y'), balance: balance_string }
-    @transactions << transaction
+    add_transaction_to_log(@transaction.new(type: 'debit' ,amount: money, balance: balance))
   end
 
   private
@@ -40,6 +35,10 @@ class BankAccount
   end
 
   def insufficient_balance?(request)
-    return true if (@balance - request).negative?
+    (@balance - request).negative?
+  end
+
+  def add_transaction_to_log(transaction)
+    @transactions_log << transaction
   end
 end

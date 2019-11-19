@@ -11,8 +11,8 @@ class BankStatement
 
   def print_statement
     statement_header
-    unless @account.transactions.empty?
-      @account.transactions.reverse.each do |transaction|
+    unless @account.transactions_log.empty?
+      @account.transactions_log.reverse.each do |transaction|
         list_each_transaction(transaction)
       end
     end
