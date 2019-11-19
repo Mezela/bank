@@ -24,19 +24,18 @@ describe BankAccount do
 
       it 'records the date of transaction' do
         subject.deposit(1000)
-        expect(subject.transactions_log.first.date).to eq DateTime.now.strftime("%d/%m/%Y")
+        expect(subject.transactions_log.first.date).to eq DateTime.now.strftime('%d/%m/%Y')
       end
 
       it 'records the current balance after transaction' do
         subject.deposit(1000)
-        expect(subject.transactions_log.first.balance).to eq '1000.00'
+        expect(subject.transactions_log.first.balance).to eq 1000.00
       end
     end
   end
 
   context 'withdrawing money from account' do
     describe '#withdraw' do
-
       it 'records the current balance after transaction' do
         expect(subject.withdraw(500)).to include 'Insufficient balance'
       end

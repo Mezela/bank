@@ -1,4 +1,3 @@
-
 require_relative 'bank_account'
 
 class BankStatement
@@ -6,32 +5,29 @@ class BankStatement
 
   def initialize(account = BankAccount.new)
     @account = account
-    @statement = ''
+    @statement = 'date || credit || debit || balance'
   end
 
   def print_statement
-    statement_header
-    unless @account.transactions_log.empty?
-      @account.transactions_log.reverse.each do |transaction|
-        list_each_transaction(transaction)
-      end
+    @account.transactions_log.reverse.each do |transaction|
+      list_each_transaction(transaction)
     end
-    return statement
+    return @statement
   end
 
   private
 
   attr_accessor :statement
 
-  def statement_header
-    statement << 'date || credit || debit || balance'
+  def format_two_decimal(num)
+    ('%.2f' % num).to_s
   end
 
   def list_each_transaction(transaction)
     if transaction[:type] == 'credit'
-      statement << '\n' + transaction[:date] + ' || ' + transaction[:amount] + ' || || ' + transaction[:balance]
+      @statement << "\\n#{transaction[:date]} || #{format_two_decimal(transaction[:amount])} || || #{format_two_decimal(transaction[:balance])}"
     else
-      statement << '\n' + transaction[:date] + ' || || ' + transaction[:amount] + ' || ' + transaction[:balance]
+      @statement << "\\n#{transaction[:date]} || || #{format_two_decimal(transaction[:amount])} || #{format_two_decimal(transaction[:balance])}"
     end
   end
 end

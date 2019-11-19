@@ -12,20 +12,20 @@ class BankAccount
     @transactions_log = []
   end
 
-  def deposit(money, date = nil)
+  def deposit(money)
     debit_to_account(money)
-    add_transaction_to_log(@transaction.new(type: 'credit' ,amount: money, balance: balance))
+    add_transaction_to_log(@transaction.new(type: 'credit', amount: money, balance: balance))
   end
 
-  def withdraw(money, date = nil)
+  def withdraw(money)
     return "Insufficient balance. Only #{@balance} left in your account." if insufficient_balance?(money)
 
     credit_to_account(money)
-    add_transaction_to_log(@transaction.new(type: 'debit' ,amount: money, balance: balance))
+    add_transaction_to_log(@transaction.new(type: 'debit', amount: money, balance: balance))
   end
 
   private
-  
+
   def debit_to_account(money)
     @balance += money
   end
