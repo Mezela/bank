@@ -1,3 +1,4 @@
+
 require_relative 'bank_account'
 
 class BankStatement
@@ -9,25 +10,24 @@ class BankStatement
   end
 
   def print_statement
-    @account.transactions_log.reverse.each do |transaction|
-      list_each_transaction(transaction)
+    @account.transactions_log.reverse.each do |t|
+      list_each_transaction(t)
     end
-    return @statement
+    puts @statement
   end
 
   private
 
   attr_accessor :statement
 
-  def format_two_decimal(num)
-    ('%.2f' % num).to_s
+  def format(num)
+    (('%.2f' % num).to_s+" ") if num.is_a?(Numeric)
   end
 
-  def list_each_transaction(transaction)
-    if transaction[:type] == 'credit'
-      @statement << "\\n#{transaction[:date]} || #{format_two_decimal(transaction[:amount])} || || #{format_two_decimal(transaction[:balance])}"
-    else
-      @statement << "\\n#{transaction[:date]} || || #{format_two_decimal(transaction[:amount])} || #{format_two_decimal(transaction[:balance])}"
-    end
+  def list_each_transaction(t)
+    
+    @statement << "\n#{t.date} || #{format(t.credit)}|| #{format(t.debit)}|| #{format(t.balance)}"
   end
 end
+
+

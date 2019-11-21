@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'date'
 require_relative 'bank_transaction'
 
@@ -14,14 +15,16 @@ class BankAccount
 
   def deposit(money)
     debit_to_account(money)
-    add_transaction_to_log(@transaction.new(type: 'credit', amount: money, balance: balance))
+    add_transaction_to_log(@transaction.new(debit: '', credit: money, balance: balance))
+    return "You have successfully deposited £#{money}"
   end
 
   def withdraw(money)
     return "Insufficient balance. Only #{@balance} left in your account." if insufficient_balance?(money)
 
     credit_to_account(money)
-    add_transaction_to_log(@transaction.new(type: 'debit', amount: money, balance: balance))
+    add_transaction_to_log(@transaction.new(credit: '', debit: money, balance: balance))
+    return "You have successfully withdrawn £#{money}"
   end
 
   private

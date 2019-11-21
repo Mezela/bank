@@ -3,10 +3,10 @@
 require 'date'
 
 class BankTransaction
-  attr_reader :date, :type, :balance, :amount  
-  def initialize(type:, amount:, balance:, date: DateTime.now.strftime('%d/%m/%Y'))
-    @type = type
-    @amount = amount
+  attr_reader :date, :credit, :debit, :balance 
+  def initialize(credit:, debit:, balance:, date: DateTime.now.strftime('%d/%m/%Y'))
+    @credit = credit
+    @debit = debit
     @balance = balance
     @date = date
   end

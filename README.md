@@ -4,13 +4,12 @@ This program interacts with the command line, taking an input of a deposit or wi
 The account statement consists of the date, amount and balance.
 
 ### Approach
-Build two classes: one to print the bank statement for any account and another class to record the transactions made in an account. This approach was used to stick to the single responsibility principle. 
+
+First, developed the user stories from the list of requirements given and the acceptance criteria. After this, I noted down what the inputs and user outputs would be.
+
+I then built two classes: one to print the bank statement for any account and another class to record the transactions made in an account. This approach was initially used to stick to the single responsibility principle, but I then found that the bank account class had two responsibilities: dealing with updating the account after deposits/withdrawals and recording the transaction. Therefore I created a third class, BankTransactions, to deal with recording each individual transaction.
 
 The hard dependencies between the classes was removed using dependency injection.
-
-### Screenshot of running app
-![Screenshot](https://github.com/Mezela/bank/tree/master/img/bank_app_screenshot.png)
-
 
 ### Next steps
 - Add additional class for recording transactions
@@ -36,11 +35,11 @@ $ cd path/to/bank/repo
 $ rspec
 ```
 ## Requirements
+
 - You should be able to interact with your code via a REPL like IRB or the JavaScript console. (You don't need to implement a command line interface that takes input from STDIN.)
 - Deposits, withdrawal
 - Account statement (date, amount, balance) printing.
 - Data can be kept in memory (it doesn't need to be stored to a database or anything).
-
 
 ## Acceptance criteria
 
@@ -55,25 +54,31 @@ date || credit || debit || balance
 13/01/2012 || 2000.00 || || 3000.00
 10/01/2012 || 1000.00 || || 1000.00
 ```
-![Screenshot](https://github.com/Mezela/bank/tree/master/img/bank_acceptance_criteria_screenshot.png)
+![Screenshot of running app](https://github.com/Mezela/bank/blob/master/img/bank_acceptance_criteria_screenshot.png "Screenshot of the app running")
 
 ## User stories
 ```
 As a user
 So that I can save my money,
-I would like to make a deposit to my bank account
+I would like to make a deposit to my bank account.
 ```
 
 ```
 As a user
 So that I can spend my money,
-I would like to make a withdrawal to my bank account
+I would like to make a withdrawal to my bank account.
 ```
 
 ```
 As a user
 So that I can decide keep track of my account usage,
-I would like to be able to see my latest bank statement including date, type and amount of transaction and balance (in reverse order by date)
+I would like to be able to see my latest bank statement including date, type (credit or debit) and amount for each transaction and the balance after the transaction is complete (in reverse order by date).
+```
+
+```
+As a user
+So that I can decide keep track of my account usage,
+I would like to be able to see my latest bank transactions printed in reverse chronological order.
 ```
 
 ### Edge cases
@@ -94,7 +99,7 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
 
-## Technologies
+## Technologies used
 - Ruby 
 - Rspec
 - Simplecov

@@ -6,7 +6,7 @@ require 'date'
 describe BankTransaction do  
   describe 'date' do
     it "a transaction will default to today's date" do
-      transaction = BankTransaction.new(type: 'credit', amount: 500, balance: 1000)
+      transaction = BankTransaction.new(debit: '', credit: 500, balance: 1000)
       expect(transaction.date).to eq DateTime.now.strftime('%d/%m/%Y')
     end
   end
