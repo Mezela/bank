@@ -11,10 +11,6 @@ I then built two classes: one to print the bank statement for any account and an
 
 The hard dependencies between the classes was removed using dependency injection.
 
-### Next steps
-- Add additional class for recording transactions
-- Classes <30 lines ; methods <5 lines
-
 ## Install
 First, clone this repository. Then move into the folder:
 ```
